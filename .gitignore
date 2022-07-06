@@ -53,8 +53,6 @@ aclimdb/*
 logs/*
 logs/fit/*
 temp/*
-data/*
-models/*
 logs/*
 notebooks/logs/*
 
