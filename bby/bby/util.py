@@ -290,6 +290,15 @@ index_to_class = dict((v,k) for k, v in class_to_index.items())
 names_to_ids = lambda n: np.array([class_to_index.get(x) for x in n])
 ids_to_names = lambda n: np.array([index_to_class.get(x) for x in n])
 
+# Word frequency distributions
+def nps_freqs(stringlist, howmany=0):
+    Vocab_str = str()
+    Vocab_str = " ".join(str(review).lower() for review in stringlist)
+
+    docSplit = Vocab_str.split()
+    freq = nltk.FreqDist(w for w in docSplit)
+    return freq
+
 def tb_enrich(ls):
     #Enriches a column of text with TextBlob Sentiment Analysis outputs
     tb_polarity = []

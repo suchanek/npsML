@@ -5,6 +5,5 @@ BBY.egg-info/dependency_links.txt
 BBY.egg-info/not-zip-safe
 BBY.egg-info/top_level.txt
 bby/__init__.py
-bby/bbyglobals.py
 bby/globals.py
 bby/util.py
