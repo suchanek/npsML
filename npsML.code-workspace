@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "../../../../Volumes/GoogleDrive/My Drive/Colab Notebooks"
 		}
 	],
 	"settings": {}
