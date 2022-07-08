@@ -5,6 +5,10 @@
 #
 # We are in territory 33, market 21, district 125, store 0494
 #
+import glob, os, os.path
+import shutil
+
+import sys
 import string
 import numpy as np
 import datetime
@@ -24,10 +28,13 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import PorterStemmer
 
-from collections import Counter
+from keras import layers
+from keras.preprocessing.sequence import pad_sequences
+from keras.preprocessing.text import text_to_word_sequence
+from tensorflow.keras.preprocessing.text import Tokenizer
 
-import shutil
-import glob, os, os.path
+
+from collections import Counter
 
 #TextBlob Features
 import textblob
@@ -419,5 +426,15 @@ def NPS_merge_old():
     print(f'Wrote file: {combinedfn} with {new_df.shape[0]} entries.')
 
     return
+
+def predict_nps(input_sentence, data, model, max_words, max_len):
+    sentiment = ['Detractor','Passive','Promoter']
+    tokenizer = Tokenizer(num_words=max_words)
+    tokenizer.fit_on_texts(data)
+    sequence = tokenizer.texts_to_sequences([input_sentence])
+    test = pad_sequences(sequence, maxlen=max_len)
+    print(f'{input_sentence} - {sentiment[np.around(model.predict(test), decimals=0).argmax(axis=1)[0]]}')
+    return
+
 
 # end of file
