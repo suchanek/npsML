@@ -1,9 +1,11 @@
 {
 	"folders": [
 		{
+			"name": "npsML",
 			"path": "."
 		},
 		{
+			"name": "Colab Notebooks",
 			"path": "../../../../Volumes/GoogleDrive/My Drive/Colab Notebooks"
 		}
 	],
