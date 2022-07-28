@@ -349,7 +349,7 @@ def ocleanup_data(data):
     # Remove distracting single quotes
     data = re.sub("\'", "", data)
 
-    # Remove elipsis
+    # Remove ellipsis
     data = re.sub("\...",  " ", data)
 
     # Strip escaped quotes
@@ -436,5 +436,42 @@ def predict_nps(input_sentence, data, model, max_words, max_len):
     print(f'{input_sentence} - {sentiment[np.around(model.predict(test), decimals=0).argmax(axis=1)[0]]}')
     return
 
+import time
+import datetime
+
+def format_time(elapsed):
+    '''
+    Takes a time in seconds and returns a string hh:mm:ss
+    '''
+    # Round to the nearest second.
+    elapsed_rounded = int(round((elapsed)))
+    
+    # Format as hh:mm:ss
+    return str(datetime.timedelta(seconds=elapsed_rounded))
+
+# extract a list of comments and their labels from a tensorflow dataset
+# return the sentences and labels as lists
+
+def extract_info(dataset):
+  labels = []
+  sentences = []
+  bc = 0
+  lc = 0
+  sc = 0
+
+  for batch in dataset:
+    bc += 1
+    if bc % 4 == 0:
+      print(f'Batch {bc}')
+
+    sent = batch[0].numpy()
+    lab = batch[1].numpy()
+    for l in lab:
+      labels.append(l)
+      lc += 1
+    for s in sent:
+      sentences.append(s)
+      sc += 1
+  return sentences, labels
 
 # end of file
